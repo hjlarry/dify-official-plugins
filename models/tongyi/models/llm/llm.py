@@ -124,7 +124,7 @@ class TongyiLargeLanguageModel(LargeLanguageModel):
                 credentials=credentials,
                 prompt_messages=[UserPromptMessage(content="ping")],
                 model_parameters={"temperature": 0.5},
-                stream=False,
+                stream=True,
             )
         except Exception as ex:
             raise CredentialsValidateFailedError(str(ex))
