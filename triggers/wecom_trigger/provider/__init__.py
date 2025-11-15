@@ -1,0 +1,1 @@
+"""WeCom trigger provider package."""

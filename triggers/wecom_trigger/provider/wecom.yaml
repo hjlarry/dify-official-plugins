@@ -1,0 +1,99 @@
+subscription_schema:
+- name: "token"
+  type: "text-input"
+  required: true
+  label:
+    en_US: "Token"
+    zh_Hans: "Token"
+    ja_JP: "トークン"
+  help:
+    en_US: "Same token set in WeCom → App Management → Event Configuration."
+
+- name: "encoding_aes_key"
+  type: "secret-input"
+  required: true
+  label:
+    en_US: "Encoding AES Key"
+    zh_Hans: "EncodingAESKey"
+    ja_JP: "Encoding AES Key"
+  help:
+    en_US: "43-character AES key from WeCom."
+
+- name: "receive_id"
+  type: "text-input"
+  required: true
+  label:
+    en_US: "Receive ID (CorpID or SuiteID)"
+    zh_Hans: "ReceiveId（CorpID 或 SuiteID）"
+    ja_JP: "受信 ID"
+  help:
+    en_US: "Used to validate decrypted payloads."
+
+- name: "agent_id"
+  type: "text-input"
+  required: false
+  label:
+    en_US: "Agent ID"
+    zh_Hans: "AgentId"
+    ja_JP: "Agent ID"
+  help:
+    en_US: "Optional app agent ID recorded with each message."
+
+- name: "message_types"
+  type: "text-input"
+  required: false
+  label:
+    en_US: "Accepted Message Types"
+  help:
+    en_US: "Comma separated values such as text,image,voice,video,file,event,other. Leave blank to accept all."
+
+subscription_constructor:
+  parameters:
+  - name: "message_types"
+    type: "string"
+    required: false
+    label:
+      en_US: "Accepted Message Types"
+    help:
+      en_US: "Optional whitelist mirrored from the subscription form."
+  credentials_schema:
+    token:
+      type: text-input
+      required: true
+      label:
+        en_US: "Token"
+    encoding_aes_key:
+      type: secret-input
+      required: true
+      label:
+        en_US: "Encoding AES Key"
+    receive_id:
+      type: text-input
+      required: true
+      label:
+        en_US: "Receive ID"
+    agent_id:
+      type: text-input
+      required: false
+      label:
+        en_US: "Agent ID"
+
+events:
+- events/message/message_received.yaml
+
+identity:
+  author: langgenius
+  description:
+    en_US: Enterprise WeChat trigger that decrypts and validates callbacks.
+    zh_Hans: 支持企业微信加密回调的触发器。
+    ja_JP: 企業微信の暗号化コールバックを処理するトリガー。
+  icon: icon.png
+  label:
+    en_US: WeCom Trigger
+    zh_Hans: 企业微信触发器
+    ja_JP: WeCom トリガー
+  name: wecom_trigger
+
+extra:
+  python:
+    source: provider/wecom.py

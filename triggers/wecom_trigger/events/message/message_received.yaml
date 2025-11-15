@@ -1,0 +1,47 @@
+identity:
+  name: message_received
+  author: langgenius
+  label:
+    en_US: WeCom Message Received
+    zh_Hans: 企业微信消息接收
+    ja_JP: WeCom メッセージ受信
+
+description:
+  en_US: Triggered whenever WeCom posts an encrypted callback to this webhook.
+  zh_Hans: 当企业微信向此 webhook 推送加密事件时被触发。
+  ja_JP: WeCom から暗号化コールバックが届いたときに発火します。
+
+parameters: []
+
+output_schema:
+  type: object
+  properties:
+    message_type:
+      type: string
+      description: Value from msgtype in the decrypted payload.
+    event_type:
+      type: [string, "null"]
+      description: When msgtype == event, the event field (e.g. subscribe, click).
+    agent_id:
+      type: [string, "null"]
+    to_user_name:
+      type: [string, "null"]
+    from_user_name:
+      type: [string, "null"]
+    create_time:
+      type: [integer, "null"]
+      description: Unix timestamp from the payload.
+    content:
+      type: [string, "null"]
+      description: Text content (for text messages).
+    raw_payload:
+      type: object
+      additionalProperties: true
+      description: Entire decrypted payload for custom handling.
+  required:
+    - message_type
+    - raw_payload
+
+extra:
+  python:
+    source: events/message/message_received.py
