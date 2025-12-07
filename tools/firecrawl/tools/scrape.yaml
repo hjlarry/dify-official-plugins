@@ -38,7 +38,41 @@ parameters:
   placeholder:
     en_US: Use commas to separate multiple tags
     zh_Hans: 多个标签时使用半角逗号分隔
-  type: string
+  type: select
+  multiple: true
+  required: true
+  default:
+    - markdown
+    - links 
+  options:
+  - label:
+      en_US: markdown
+      zh_Hans: markdown
+    value: markdown
+  - label:
+      en_US: html
+      zh_Hans: html
+    value: html
+  - label:
+      en_US: rawHtml
+      zh_Hans: rawHtml
+    value: rawHtml
+  - label:
+      en_US: links
+      zh_Hans: links
+    value: links
+  - label:
+      en_US: screenshot
+      zh_Hans: screenshot
+    value: screenshot
+  - label:
+      en_US: extract
+      zh_Hans: extract
+    value: extract
+  - label:
+      en_US: screenshot@fullPage
+      zh_Hans: screenshot@fullPage
+    value: screenshot@fullPage
 - form: form
   human_description:
     en_US: Only return the main content of the page excluding headers, navs, footers,
@@ -48,8 +82,17 @@ parameters:
     en_US: only Main Content
     zh_Hans: 仅抓取主要内容
   name: onlyMainContent
-  type: boolean
+  type: select
   default: false
+  options:
+  - label:
+      en_US: "true"
+      zh_Hans: "true"
+    value: "true"
+  - label:
+      en_US: "false"
+      zh_Hans: "false"
+    value: "false"
 - form: form
   human_description:
     en_US: 'Only include tags, classes and ids from the page in the final output.
