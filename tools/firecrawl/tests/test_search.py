@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.firecrawl_appx import FirecrawlApp
+from tools.firecrawl_appx import FirecrawlApp, get_array_params
 
 
 class _MessageToolMixin:
@@ -13,6 +13,11 @@ class _MessageToolMixin:
 
     def create_text_message(self, value):
         return {"type": "text", "value": value}
+
+
+def test_array_params_accepts_multi_select_and_legacy_comma_separated_values():
+    assert get_array_params({"formats": ["markdown", "links"]}, "formats") == ["markdown", "links"]
+    assert get_array_params({"formats": "markdown, links"}, "formats") == ["markdown", "links"]
 
 
 def test_firecrawl_app_search_posts_to_v2_search(monkeypatch):
@@ -61,7 +66,7 @@ def test_search_tool_builds_payload_and_returns_json(monkeypatch):
                 "categories": "github,research",
                 "includeDomains": "firecrawl.dev,docs.firecrawl.dev",
                 "country": "JP",
-                "scrapeFormats": "markdown,summary",
+                "scrapeFormats": ["markdown", "summary"],
                 "onlyMainContent": True,
             }
         )

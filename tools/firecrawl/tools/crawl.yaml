@@ -144,10 +144,29 @@ parameters:
     en_US: Formats
     zh_Hans: 结果的格式
   name: formats
-  placeholder:
-    en_US: Use commas to separate multiple tags
-    zh_Hans: 多个标签时使用半角逗号分隔
-  type: string
+  type: select
+  multiple: true
+  options:
+  - label:
+      en_US: Markdown
+      zh_Hans: Markdown
+    value: markdown
+  - label:
+      en_US: HTML
+      zh_Hans: HTML
+    value: html
+  - label:
+      en_US: Raw HTML
+      zh_Hans: 原始 HTML
+    value: rawHtml
+  - label:
+      en_US: Links
+      zh_Hans: 链接
+    value: links
+  - label:
+      en_US: Screenshot
+      zh_Hans: 截图
+    value: screenshot
 - form: form
   human_description:
     en_US: 'Headers to send with the request. Can be used to send cookies, user-agent,

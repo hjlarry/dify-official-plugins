@@ -161,10 +161,33 @@ parameters:
     en_US: Scrape Formats
     zh_Hans: 抓取格式
   name: scrapeFormats
-  placeholder:
-    en_US: markdown,summary
-    zh_Hans: markdown,summary
-  type: string
+  type: select
+  multiple: true
+  options:
+  - label:
+      en_US: Markdown
+      zh_Hans: Markdown
+    value: markdown
+  - label:
+      en_US: HTML
+      zh_Hans: HTML
+    value: html
+  - label:
+      en_US: Raw HTML
+      zh_Hans: 原始 HTML
+    value: rawHtml
+  - label:
+      en_US: Links
+      zh_Hans: 链接
+    value: links
+  - label:
+      en_US: Screenshot
+      zh_Hans: 截图
+    value: screenshot
+  - label:
+      en_US: Summary
+      zh_Hans: 摘要
+    value: summary
 - form: form
   human_description:
     en_US: Only return the main content when scraping search results.

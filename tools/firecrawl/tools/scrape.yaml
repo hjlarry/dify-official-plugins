@@ -35,10 +35,33 @@ parameters:
     en_US: Formats
     zh_Hans: 结果的格式
   name: formats
-  placeholder:
-    en_US: Use commas to separate multiple tags
-    zh_Hans: 多个标签时使用半角逗号分隔
-  type: string
+  type: select
+  multiple: true
+  options:
+  - label:
+      en_US: Markdown
+      zh_Hans: Markdown
+    value: markdown
+  - label:
+      en_US: HTML
+      zh_Hans: HTML
+    value: html
+  - label:
+      en_US: Raw HTML
+      zh_Hans: 原始 HTML
+    value: rawHtml
+  - label:
+      en_US: Links
+      zh_Hans: 链接
+    value: links
+  - label:
+      en_US: Screenshot
+      zh_Hans: 截图
+    value: screenshot
+  - label:
+      en_US: Full-page Screenshot
+      zh_Hans: 全页截图
+    value: screenshot@fullPage
 - form: form
   human_description:
     en_US: Only return the main content of the page excluding headers, navs, footers,

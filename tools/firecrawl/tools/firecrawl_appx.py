@@ -144,8 +144,11 @@ class FirecrawlApp:
 
 def get_array_params(tool_parameters: dict[str, Any], key):
     param = tool_parameters.get(key)
-    if param:
-        return [p.strip() for p in param.split(",")]
+    if not param:
+        return None
+    if isinstance(param, list):
+        return param
+    return [p.strip() for p in param.split(",")]
 
 
 def get_json_params(tool_parameters: dict[str, Any], key):
